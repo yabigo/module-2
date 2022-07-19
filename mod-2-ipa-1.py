@@ -112,4 +112,4 @@ def body_mass_index(weight, height):
     '''
     # Replace `pass` with your code.
     # Stay within the function. Only use the parameters as input. The function should return your answer.
-    return (weight/2.205) / ((height[0]/3.281 + height[1])/39.37) ** 2
+    return (weight / 2.205) / pow((((height[0] * 12) + height[1]) * 0.0254), 2)
