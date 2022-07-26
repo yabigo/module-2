@@ -55,7 +55,7 @@ def shift_letter(letter, shift):
         '''
         # Replace `pass` with your code.
         # Stay within the function. Only use the parameters as input. The function should return your answer.
-        def caesar_cipher(message, shift):
+def caesar_cipher(message, shift):
         list=[]
         for i in message: 
             list.append(i)
@@ -101,7 +101,7 @@ def shift_letter(letter, shift):
                     c_cipher =""
                     c_cipher =c_cipher.join(new)
         return c_cipher
-
+    
 def shift_by_letter(letter, letter_shift):
     '''Shift By Letter. 
     10 points.
