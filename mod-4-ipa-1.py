@@ -88,8 +88,7 @@ def tic_tac_toe(board):
         final_string_up_down = " ".join(map(str,final_up_down_set))
         return (final_string_up_down)
                                   
-    else:
-        return ("NO WINNER")
+    else: return "No Winner"
 
 
 # In[7]:
@@ -121,27 +120,21 @@ def eta(first_stop, second_stop, route_map):
     '''
     # Replace `pass` with your code. 
     # Stay within the function. Only use the parameters as input. The function should return your answer.
-   
-    if (first_stop,second_stop) in route_map:
-        time = route_map[(first_stop,second_stop)]['travel_time_mins']
-        travel_time = time
+    
+    routes_list = list(route_map.keys())
 
-    else:
-        length = len(route_map)
-        start = [pos[0] for pos in route_map]
-        end = [pos[1] for pos in route_map]
-        i = start.index(first_stop)
-
-        
-        while True:
-            while i >= length:
-                i = length - i
-            travel_time += route_map[start[i],end[i]]['travel_time_mins']
-            if end[i] == second_stop:
-                break
-            i += 1
-    return travel_time
-
-
-
-
+    upd_admu = routes_list[0]
+    admu_dlsu = routes_list[1]
+    dlsu_upd = routes_list[2]
+    
+    times_list = list(route_map.values())
+    upd_admu_time = times_list[0]['travel_time_mins']
+    admu_dlsu_time = times_list[1]['travel_time_mins']
+    dlsu_upd_time = times_list[2]['travel_time_mins']
+    
+    if (first_stop in upd_admu) & (second_stop in upd_admu):
+        return upd_admu_time
+    elif (first_stop in admu_dlsu) & (second_stop in admu_dlsu):
+        return admu_dlsu_time
+    elif (first_stop in dlsu_upd) & (second_stop in dlsu_upd):
+        return dlsu_upd_time
