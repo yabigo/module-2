@@ -64,35 +64,16 @@ def tic_tac_toe(board):
     '''
     # Replace `pass` with your code. 
     # Stay within the function. Only use the parameters as input. The function should return your answer.
-    for vertical in zip(*board):
-        
-        if len(set(vertical)) == 1:
-            final_set_vertical = (set(vertical))
-            final_string_vertical = " ".join(map(str,final_set_vertical))
-            return (final_string_vertical)
-        
-    for horizontal, horizontal_2 in enumerate(board):
-        
-        if len(set(horizontal_2)) == 1:
-            final_set_horizontal = (set(horizontal_2))
-            final_string_horizontal = " ".join(map(str,final_set_horizontal))
-            return (final_string_horizontal)
-
-    if len(set([board[(len(host)-1)-c][c] for c, host in enumerate(board)])) == 1: #down-up
-        final_down_up_set = (set([board[(len(host)-1)-c][c] for c, host in enumerate(board)]))
-        final_string_down_up = " ".join(map(str,final_down_up_set))
-        return (final_string_down_up)
-                                  
-    elif len(set([board[a][a] for a,b in enumerate(board)])) ==1:
-        final_up_down_set = (set([board[a][a] for a,b in enumerate(board)]))
-        final_string_up_down = " ".join(map(str,final_up_down_set))
-        return (final_string_up_down)
-                                  
-    else: return "No Winner"
-
-
-# In[7]:
-
+    horizontal_check = [x for x in board]
+    vertical_check = [x for x in zip(*board)]
+    updown_diagonal_check = [board[i][i] for i,v in enumerate(board)]
+    downup_diagonal_check = [board[len(board)-1-i][i] for i,v in enumerate(board)]
+    
+    if any(z == ["X"]*len(board) for z in horizontal_check) or any(z == tuple(["X"]*len(board)) for z in vertical_check) or all(z == "X" for z in updown_diagonal_check) or all(z == "X" for z in downup_diagonal_check):
+        return "X"
+    elif any(z == ["O"]*len(board) for z in horizontal_check) or any(z == tuple(["O"]*len(board)) for z in vertical_check) or all(z == "O" for z in updown_diagonal_check) or all(z == "O" for z in downup_diagonal_check):
+        return "O"
+    return "NO WINNER"
 
 def eta(first_stop, second_stop, route_map):
     '''ETA. 
@@ -120,21 +101,11 @@ def eta(first_stop, second_stop, route_map):
     '''
     # Replace `pass` with your code. 
     # Stay within the function. Only use the parameters as input. The function should return your answer.
-    
-    routes_list = list(route_map.keys())
+    duration = 0
+    try:
+        return route_map[(first_stop, second_stop)]["travel_time_mins"]
+    except:
+        for route in route_map:
+            if route[0] == first_stop:
+                return route_map[(first_stop, route[1])]["travel_time_mins"] + eta(route[1], second_stop, route_map)
 
-    upd_admu = routes_list[0]
-    admu_dlsu = routes_list[1]
-    dlsu_upd = routes_list[2]
-    
-    times_list = list(route_map.values())
-    upd_admu_time = times_list[0]['travel_time_mins']
-    admu_dlsu_time = times_list[1]['travel_time_mins']
-    dlsu_upd_time = times_list[2]['travel_time_mins']
-    
-    if (first_stop in upd_admu) & (second_stop in upd_admu):
-        return upd_admu_time
-    elif (first_stop in admu_dlsu) & (second_stop in admu_dlsu):
-        return admu_dlsu_time
-    elif (first_stop in dlsu_upd) & (second_stop in dlsu_upd):
-        return dlsu_upd_time
