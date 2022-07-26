@@ -55,52 +55,51 @@ def shift_letter(letter, shift):
         '''
         # Replace `pass` with your code.
         # Stay within the function. Only use the parameters as input. The function should return your answer.
-def caesar_cipher(message, shift):
-        list=[]
-        for i in message: 
-            list.append(i)
-        new=[]
+    list=[]
+    for i in message: 
+        list.append(i)
+    new=[]
   
-        for i in list:
-            letter = i
-            is_upper = letter.isupper()
-            if is_upper:
-                num_letter = ord(i)
-                total = shift + num_letter
-                max = 90
-                if i == " ":
-                    new.append(" ")
-                elif i == "_":
-                    new.append("_")
-                else:
-                    if total > max:
-                        remainder = int(total - 90 + 65)
-                        new_letter = (chr(remainder-1))
-                        new.append(new_letter)
-                    else: 
-                        new_letter = chr(num_letter+shift)
-                        new.append(new_letter)
-                    c_cipher =""
-                    c_cipher =c_cipher.join(new)
+    for i in list:
+        letter = i
+        is_upper = letter.isupper()
+        if is_upper:
+            num_letter = ord(i)
+            total = shift + num_letter
+            max = 90
+            if i == " ":
+                new.append(" ")
+            elif i == "_":
+                new.append("_")
             else:
-                num_letter = ord(i)
-                total = shift + num_letter
-                max = 122
-                if i == " ":
-                    new.append(" ")
-                elif i == "_":
-                    new.append("_")
-                else:
-                    if total > max:
-                        remainder = int(total - 122 + 97)
-                        new_letter = (chr(remainder-1))
-                        new.append(new_letter)
-                    else: 
-                        new_letter = chr(num_letter+shift)
-                        new.append(new_letter)
-                    c_cipher =""
-                    c_cipher =c_cipher.join(new)
-        return c_cipher
+                if total > max:
+                    remainder = int(total - 90 + 65)
+                    new_letter = (chr(remainder-1))
+                    new.append(new_letter)
+                else: 
+                    new_letter = chr(num_letter+shift)
+                    new.append(new_letter)
+                c_cipher =""
+                c_cipher =c_cipher.join(new)
+        else:
+            num_letter = ord(i)
+            total = shift + num_letter
+            max = 122
+            if i == " ":
+                new.append(" ")
+            elif i == "_":
+                new.append("_")
+            else:
+                if total > max:
+                    remainder = int(total - 122 + 97)
+                    new_letter = (chr(remainder-1))
+                    new.append(new_letter)
+                else: 
+                    new_letter = chr(num_letter+shift)
+                    new.append(new_letter)
+                c_cipher =""
+                c_cipher =c_cipher.join(new)
+    return c_cipher
     
 def shift_by_letter(letter, letter_shift):
     '''Shift By Letter. 
